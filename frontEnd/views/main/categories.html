@@ -1,0 +1,56 @@
+<div class="row justify-content-md-center">
+    <div class="col col-md-10">
+        <form ng-submit="onSearch(null)">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search here"
+                       aria-label="Search here" aria-describedby="button-search"
+                       ng-model="textSearch">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-search" >
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="loader" ng-show="showLoader">
+        <i class="fas fa-jedi"></i>
+    </div>
+    <div class="col col-md-10 my-3" ng-show="searchData!=null && !showLoader">
+        <button class="btn float-left"
+                ng-show="searchData.previous!=null"
+                ng-click="onSearch(searchData.previous)">Previous</button>
+        <button class="btn float-right"
+                ng-show="searchData.next!=null"
+                ng-click="onSearch(searchData.next)">Next</button>
+    </div>
+    <div class="col col-md-10" ng-show="searchData!=null && !showLoader">
+        <table class="table table-light table-hover table-striped">
+            <tr>
+                <th class="text-capitalize">{{category + ' list'}}</th>
+                <td></td>
+            </tr>
+            <tr ng-repeat="data in searchData.results">
+                <td>{{data.name}}{{data.title}}</td>
+                <td>
+                    <a href="#details?c1={{data.category}}&c2={{data.id}}" class="btn btn-success float-right">Show more</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row" ng-show="searchData==null && !showLoader">
+    <div class="col col-md-3 text-center categories" ng-repeat="(key, links) in starWarsData" ng-click="playAudio()">
+        <a href="#list?category={{key}}">
+            <h2>
+                <i class="fas fa-user fa-2x" ng-show="key=='people'"></i>
+                <i class="fas fa-globe-asia fa-2x" ng-show="key=='planets'"></i>
+                <i class="fas fa-film fa-2x" ng-show="key=='films'"></i>
+                <i class="fas fa-pastafarianism fa-2x" ng-show="key=='species'"></i>
+                <i class="fas fa-motorcycle fa-2x" ng-show="key=='vehicles'"></i>
+                <i class="fas fa-space-shuttle fa-2x" ng-show="key=='starships'"></i>
+            </h2>
+            <h3 class="text-capitalize">{{key}}</h3>
+        </a>
+    </div>
+</div>

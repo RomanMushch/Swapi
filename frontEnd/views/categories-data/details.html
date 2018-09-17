@@ -1,0 +1,668 @@
+<div class="row justify-content-md-center">
+    <!--<div class="col col-md-10 my-3">-->
+        <!--<button class="btn float-left" ng-show="pagination.previous!=null">Previous</button>-->
+        <!--<button class="btn float-right" ng-show="pagination.next!=null">Next</button>-->
+    <!--</div>-->
+    <div class="loader" ng-show="showLoader">
+        <i class="fas fa-jedi"></i>
+    </div>
+    <div class="col col-md-10 person-card my-5 p-3">
+        <div class="row" ng-show="showPeopleDetails&&!showLoader">
+            <div class="col-md-10">
+                <h2>{{elementData.name}}</h2>
+                <div class="row">
+                    <div class="col col-md-6">
+                        <table class="table without-padding">
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">height</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.height}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">mass</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.mass}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">hair color</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.hair_color}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">skin color</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.skin_color}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">eye color</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.eye_color}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">birth year</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.birth_year}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">gender</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.gender}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">planet</span>:
+                                </th>
+                                <td>
+                                    <a href="#details?c1=planets&c2={{formatedData.planetId}}">{{' ' + formatedData.planetName}}</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col col-md-6">
+                        <table class="table without-padding">
+                            <tr ng-repeat="film in formatedData.formatedFilms | orderBy:'filmId'">
+                                <th><span class="text-capitalize" ng-show="$index==0">films:</span></th>
+                                <td><a href="#details?c1=films&c2={{film.filmId}}">{{film.filmName}}</a></td>
+                            </tr>
+                        </table>
+
+                        <p >
+
+                        </p>
+                    </div>
+                    <div class="col col-md-12">
+                        <table class="table without-padding text-left">
+                            <tr>
+                                <th width="100"><span class="text-capitalize">vehicles:</span></th>
+                                <td>
+                                    <a href="#details?c1=vehicles&c2={{vehicle.vehiclesId}}" ng-repeat="vehicle in formatedData.formatedVehicles">
+                                        <span>{{' ' + vehicle.vehiclesName}}</span><span ng-show="($index)!=(formatedData.formatedVehicles.length-1)">,</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="text-capitalize">starships:</span></th>
+                                <td>
+                                    <a href="#details?c1=starships&c2={{starship.starshipsId}}" ng-repeat="starship in formatedData.formatedStarships">
+                                        <span>{{' ' + starship.starshipsName}}</span><span ng-show="($index)!=(formatedData.formatedStarships.length-1)">,</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="text-capitalize">species:</span></th>
+                                <td>
+                                    <a href="#details?c1=species&c2={{specie.speciesId}}" ng-repeat="specie in formatedData.formatedSpecies">
+                                        <span>{{' ' + specie.speciesName}}</span><span ng-show="($index)!=(formatedData.formatedSpecies.length-1)">,</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <i class="fas fa-male fa-5x" ng-show="elementData.gender=='male'"></i>
+                <i class="fas fa-female fa-5x" ng-show="elementData.gender=='female'"></i>
+                <i class="fas fa-meh-blank fa-5x" ng-show="elementData.gender=='n/a'"></i>
+            </div>
+        </div>
+        <div class="row" ng-show="showPlanetDetails&&!showLoader">
+            <div class="col-md-10">
+                <h2>{{elementData.name}}</h2>
+                <div class="row">
+                    <div class="col col-md-6">
+                        <table class="table without-padding">
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">rotation period</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.rotation_period}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">orbital period</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.orbital_period}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">diameter</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.diameter}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">climate</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.climate}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">gravity</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.gravity}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">terrain</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.terrain}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">surface water</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.surface_water}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">population</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.population}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col col-md-6">
+                        <table class="table without-padding">
+                            <tr ng-repeat="film in formatedData.formatedFilms | orderBy:'filmId'">
+                                <th><span class="text-capitalize" ng-show="$index==0">films:</span></th>
+                                <td><a href="#details?c1=films&c2={{film.filmId}}">{{film.filmName}}</a></td>
+                            </tr>
+                        </table>
+
+                        <p >
+
+                        </p>
+                    </div>
+                    <div class="col col-md-12">
+                        <table class="table without-padding text-left">
+                            <tr>
+                                <th width="100"><span class="text-capitalize">residents:</span></th>
+                                <td>
+                                    <a href="#details?c1=people&c2={{person.peopleId}}" ng-repeat="person in formatedData.formatedPeople">
+                                        <span>{{' ' + person.peopleName}}</span><span ng-show="($index)!=(formatedData.formatedPeople.length-1)">,</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <i class="fas fa-globe-asia fa-5x"></i>
+            </div>
+        </div>
+        <div class="row" ng-show="showFilmDetails&&!showLoader">
+            <div class="col-md-10">
+                <h2>{{elementData.title + ' Episode: ' + elementData.episode_id}}</h2>
+                <div class="row">
+                    <div class="col col-md-6">
+                        <table class="table without-padding">
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">director</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.director}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">producer</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.producer}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">release date</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.release_date}}
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div class="col col-md-12">
+                        <p class="font-weight-bold">About:</p>
+                        <p class="mb-3">{{elementData.opening_crawl}}</p>
+                        <table class="table without-padding text-left">
+                            <tr>
+                                <th width="100"><span class="text-capitalize">residents:</span></th>
+                                <td>
+                                    <a href="#details?c1=people&c2={{person.peopleId}}" ng-repeat="person in formatedData.formatedPeople">
+                                        <span>{{' ' + person.peopleName}}</span><span ng-show="($index)!=(formatedData.formatedPeople.length-1)">,</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="text-capitalize">vehicles:</span></th>
+                                <td>
+                                    <a href="#details?c1=vehicles&c2={{vehicle.vehiclesId}}" ng-repeat="vehicle in formatedData.formatedVehicles">
+                                        <span>{{' ' + vehicle.vehiclesName}}</span><span ng-show="($index)!=(formatedData.formatedVehicles.length-1)">,</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="text-capitalize">starships:</span></th>
+                                <td>
+                                    <a href="#details?c1=starships&c2={{starship.starshipsId}}" ng-repeat="starship in formatedData.formatedStarships">
+                                        <span>{{' ' + starship.starshipsName}}</span><span ng-show="($index)!=(formatedData.formatedStarships.length-1)">,</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="text-capitalize">species:</span></th>
+                                <td>
+                                    <a href="#details?c1=species&c2={{specie.speciesId}}" ng-repeat="specie in formatedData.formatedSpecies">
+                                        <span>{{' ' + specie.speciesName}}</span><span ng-show="($index)!=(formatedData.formatedSpecies.length-1)">,</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <i class="fas fa-film fa-5x"></i>
+            </div>
+        </div>
+        <div class="row" ng-show="showSpeciesDetails&&!showLoader">
+            <div class="col-md-10">
+                <h2>{{elementData.name}}</h2>
+                <div class="row">
+                    <div class="col col-md-6">
+                        <table class="table without-padding">
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">classification</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.classification}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">designation</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.designation}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">average height</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.average_height}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">skin color</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.skin_color}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">skin colors</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.skin_colors}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">hair colors</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.hair_colors}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">eye colors</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.eye_colors}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">language</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.language}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">average lifespan</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.average_lifespan}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">planet</span>:
+                                </th>
+                                <td>
+                                    <a href="#details?c1=planets&c2={{formatedData.planetId}}">{{' ' + formatedData.planetName}}</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col col-md-6">
+                        <table class="table without-padding">
+                            <tr ng-repeat="film in formatedData.formatedFilms | orderBy:'filmId'">
+                                <th><span class="text-capitalize" ng-show="$index==0">films:</span></th>
+                                <td><a href="#details?c1=films&c2={{film.filmId}}">{{film.filmName}}</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col col-md-12">
+                        <table class="table without-padding text-left">
+                            <tr>
+                                <th width="100"><span class="text-capitalize">people:</span></th>
+                                <td>
+                                    <a href="#details?c1=people&c2={{people.peopleId}}" ng-repeat="people in formatedData.formatedPeople">
+                                        <span>{{' ' + people.peopleName}}</span><span ng-show="($index)!=(formatedData.formatedPeople.length-1)">,</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <i class="fas fa-pastafarianism fa-5x"></i>
+            </div>
+        </div>
+        <div class="row" ng-show="showVehiclesDetails&&!showLoader">
+            <div class="col-md-10">
+                <h2>{{elementData.name}}</h2>
+                <div class="row">
+                    <div class="col col-md-6">
+                        <table class="table without-padding">
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">model</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.model}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">manufacturer</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.manufacturer}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">cost in credits</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.cost_in_credits}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">length</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.length}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">max atmosphering speed</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.max_atmosphering_speed}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">crew</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.crew}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">passengers</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.passengers}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">cargo capacity</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.cargo_capacity}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">consumables</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.consumables}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">vehicle class</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.vehicle_class}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col col-md-6">
+                        <table class="table without-padding">
+                            <tr ng-repeat="film in formatedData.formatedFilms | orderBy:'filmId'">
+                                <th><span class="text-capitalize" ng-show="$index==0">films:</span></th>
+                                <td><a href="#details?c1=films&c2={{film.filmId}}">{{film.filmName}}</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col col-md-12">
+                        <table class="table without-padding text-left">
+                            <tr>
+                                <th width="100"><span class="text-capitalize">pilots:</span></th>
+                                <td>
+                                    <a href="#details?c1=people&c2={{people.peopleId}}" ng-repeat="people in formatedData.formatedPeople">
+                                        <span>{{' ' + people.peopleName}}</span><span ng-show="($index)!=(formatedData.formatedPeople.length-1)">,</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <i class="fas fa-motorcycle fa-5x"></i>
+            </div>
+        </div>
+        <div class="row" ng-show="showStarshipsDetails&&!showLoader">
+            <div class="col-md-10">
+                <h2>{{elementData.name}}</h2>
+                <div class="row">
+                    <div class="col col-md-6">
+                        <table class="table without-padding">
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">model</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.model}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">manufacturer</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.manufacturer}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">cost in credits</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.cost_in_credits}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">length</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.length}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">max atmosphering speed</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.max_atmosphering_speed}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">crew</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.crew}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">passengers</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.passengers}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">cargo capacity</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.cargo_capacity}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">consumables</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.consumables}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">hyperdrive rating</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.hyperdrive_rating}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">MGLT</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.MGLT}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="text-capitalize">starship class</span>:
+                                </th>
+                                <td>
+                                    {{' ' + elementData.starship_class}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col col-md-6">
+                        <table class="table without-padding">
+                            <tr ng-repeat="film in formatedData.formatedFilms | orderBy:'filmId'">
+                                <th><span class="text-capitalize" ng-show="$index==0">films:</span></th>
+                                <td><a href="#details?c1=films&c2={{film.filmId}}">{{film.filmName}}</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col col-md-12">
+                        <table class="table without-padding text-left">
+                            <tr>
+                                <th width="100"><span class="text-capitalize">pilots:</span></th>
+                                <td>
+                                    <a href="#details?c1=people&c2={{people.peopleId}}" ng-repeat="people in formatedData.formatedPeople">
+                                        <span>{{' ' + people.peopleName}}</span><span ng-show="($index)!=(formatedData.formatedPeople.length-1)">,</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <i class="fas fa-space-shuttle fa-5x"></i>
+            </div>
+        </div>
+    </div>
+</div>

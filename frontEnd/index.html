@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="sripts/app.js"></script>
+    <script src="sripts/controllers/main/MainController.js"></script>
+    <script src="sripts/controllers/categories/ListController.js"></script>
+    <script src="sripts/controllers/categories/DetailsController.js"></script>
+    <link rel="stylesheet" href="styles/bootstrap/dist/css/bootstrap.css">
+    <script src="styles/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/swstyles.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</head>
+<body ng-app="apiStarWars">
+<div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col col-md-10 text-center">
+                <h1 class="sw-logo" onclick="playAudio()"><a href="#">Star Wars API</a></h1>
+            </div>
+        </div>
+    <div ng-view></div>
+    <audio id="audioID">
+        <!--<source src="http://mattersofgrey.com/audio/saberon.mp3">-->
+        <!--<source src="http://soundfxcenter.com/movies/star-wars/8d82b5_Lightsaber_Pulse_Sound_Effect.mp3">-->
+        <source src="http://mattersofgrey.com/audio/blaster.mp3">
+    </audio>
+    <script>
+         function playAudio() {
+             var audio  = $('#audioID')
+             audio.get(0).currentTime = 0;
+             audio.get(0).play();
+             // $('#audioID').get(0).play()
+        }
+    </script>
+</div>
+</body>
+</html>
